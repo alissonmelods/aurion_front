@@ -1,7 +1,7 @@
 /* src/styles.scss */
 
 // Importe o Bootstrap e o Bootstrap Icons (opcional, se for usar)
-@import "bootstrap/scss/bootstrap";
+@use "bootstrap/scss/bootstrap";
 // @import "~bootstrap-icons/font/bootstrap-icons.css"; /* Opcional, se usar Bootstrap Icons */
 
 /* Seu CSS global personalizado (ou para sobrescrever Bootstrap) vem abaixo */
