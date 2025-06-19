@@ -1,0 +1,75 @@
+<div class="container-fluid d-flex justify-content-center align-items-center min-vh-100 bg-light p-3">
+  <div class="row bg-white shadow-lg rounded-xl overflow-hidden w-100" style="max-width: 1300px;">
+
+    <div class="col-12 col-lg-6 p-4 p-md-5 d-flex flex-column justify-content-center">
+      <div class="mb-md-5 text-center">
+        <img src="aurion_logo_texto.png" alt="Aurion Logo" class="img-fluid mb-4 mx-auto d-block"
+             style="max-width: 200px; border-radius: 100px;">
+      </div>
+
+      <form (ngSubmit)="onLogin()" class="needs-validation" novalidate>
+        <div class="mb-3">
+          <label for="email" class="form-label text-muted fw-semibold mb-1">Email</label>
+          <input id="email" name="email" type="email" autocomplete="email" required placeholder="Digite seu email aqui"
+                 class="form-control form-control-lg"
+                 [(ngModel)]="email">
+        </div>
+
+        <div class="mb-3">
+          <label for="password" class="form-label text-muted fw-semibold mb-1">Senha</label>
+          <div class="input-group">
+            <input id="password" name="password" type="password" autocomplete="current-password" required placeholder="••••••••"
+                   class="form-control form-control-lg"
+                   [(ngModel)]="senha">
+            <span class="input-group-text bg-white border-start-0 text-muted">
+              <i class="bi bi-eye"></i>
+            </span>
+          </div>
+        </div>
+
+        <div class="d-flex justify-content-between align-items-center mb-4">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="remember-me">
+            <label class="form-check-label text-dark" for="remember-me">
+              Lembrar-me
+            </label>
+          </div>
+          <a href="#" class="text-decoration-none text-primary fw-medium">Esqueceu a Senha?</a>
+        </div>
+
+        <!-- Mensagem de erro, visível apenas se houver erro -->
+        <div *ngIf="errorMessage" class="alert alert-danger text-center py-2" role="alert">
+          {{ errorMessage }}
+        </div>
+
+        <div class="mb-4">
+          <button type="submit"
+                  class="btn btn-primary btn-lg w-100 shadow-sm transition-colors">
+            Login
+          </button>
+        </div>
+      </form>
+
+      <!-- Lógica de Seleção de Condomínio - Visível APÓS o Login bem-sucedido -->
+      <!-- Esta parte é da funcionalidade do Angular e aparece condicionalmente -->
+      <div *ngIf="condominios && condominios.length > 0" class="mt-4 pt-4 border-top border-light">
+        <label for="password" class="form-label text-muted fw-semibold mb-1">Selecione um condomínio para acessar</label>
+        <select class="form-select form-select-lg mb-3" [(ngModel)]="selectedCondominioId" (change)="onCondominioSelected()">
+          <option [ngValue]="null" disabled selected>-- Selecione --</option>
+          <option *ngFor="let condo of condominios" [ngValue]="condo.id">
+            {{ condo.nome }}
+          </option>
+        </select>
+        <button (click)="onCondominioSelected()" [disabled]="!selectedCondominioId"
+                class="btn btn-primary btn-lg w-100 shadow-sm disabled:opacity-50 disabled:cursor-not-allowed">
+          Acessar Condomínio
+        </button>
+      </div>
+    </div>
+
+    <div class="col-12 col-lg-6 gradient-background d-flex flex-column justify-content-center align-items-center text-center text-white p-4 p-md-5">
+
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,14 @@
+/* src/app/features/auth-page/components/login-form/login-form.component.scss */
+
+/* Gradiente para o painel direito, conforme o print */
+.gradient-background {
+  background-image: linear-gradient(to bottom right, #52A9FF, #6A74F6);
+}
+
+/* Cores e estilos do Bootstrap podem ser sobrescritos aqui, se necessário.
+   Por exemplo, se quiser uma cor primária diferente da padrão do Bootstrap:
+   .btn-primary {
+       background-color: #6A74F6 !important;
+       border-color: #6A74F6 !important;
+   }
+*/

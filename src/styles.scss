@@ -1,1 +1,10 @@
-/* You can add global styles to this file, and also import other style files */
+/* src/styles.scss */
+
+// Importe o Bootstrap e o Bootstrap Icons (opcional, se for usar)
+@import "bootstrap/scss/bootstrap";
+// @import "~bootstrap-icons/font/bootstrap-icons.css"; /* Opcional, se usar Bootstrap Icons */
+
+/* Seu CSS global personalizado (ou para sobrescrever Bootstrap) vem abaixo */
+body {
+  font-family: 'Inter', sans-serif; /* Mantenha a fonte Inter */
+}
