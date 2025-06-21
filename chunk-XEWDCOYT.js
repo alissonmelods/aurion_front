@@ -1,1 +1,0 @@
-import{O as t,lb as e,za as i}from"./chunk-ELOV77M5.js";var r=class o{static \u0275fac=function(m){return new(m||o)};static \u0275mod=i({type:o});static \u0275inj=t({imports:[e]})};export{r as AdminModule};
