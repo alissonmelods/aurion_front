@@ -1,0 +1,79 @@
+<!-- src/app/features/admin/components/user-form/user-form.component.html -->
+<div class="modal-header bg-primary text-white">
+  <h4 class="modal-title">{{ isEditing ? 'Editar Usuário' : 'Novo Usuário' }}</h4>
+  <button type="button" class="btn-close btn-close-white" aria-label="Close" (click)="closeModal()"></button>
+</div>
+<div class="modal-body">
+  <div *ngIf="isLoading" class="text-center my-4">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Carregando...</span>
+    </div>
+    <p class="text-muted mt-2">Carregando dados do usuário...</p>
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+    {{ errorMessage }}
+  </div>
+
+  <form *ngIf="!isLoading" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+    <div class="mb-3">
+      <label for="nome" class="form-label">Nome:</label>
+      <input type="text" class="form-control" id="nome" name="nome" [(ngModel)]="user.nome" required>
+      <div class="invalid-feedback">
+        Por favor, insira o nome.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="email" class="form-label">Email:</label>
+      <input type="email" class="form-control" id="email" name="email" [(ngModel)]="user.email" required>
+      <div class="invalid-feedback">
+        Por favor, insira um email válido.
+      </div>
+    </div>
+
+    <div class="mb-3" *ngIf="!isEditing">
+      <label for="senha" class="form-label">Senha:</label>
+      <input type="password" class="form-control" id="senha" name="senha" [(ngModel)]="user.senha" required>
+      <div class="invalid-feedback">
+        Por favor, insira a senha.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="tipoUsuario" class="form-label">Tipo de Usuário:</label>
+      <select class="form-select" id="tipoUsuario" name="tipoUsuario" [(ngModel)]="user.tipoUsuario" required>
+        <option [ngValue]="null" disabled>Selecione um tipo</option>
+        <option *ngFor="let type of userTypes" [ngValue]="type">{{ type | titlecase }}</option>
+      </select>
+      <div class="invalid-feedback">
+        Por favor, selecione o tipo de usuário.
+      </div>
+    </div>
+
+    <div class="mb-3">
+      <label for="cpf" class="form-label">CPF:</label>
+      <input type="text" class="form-control" id="cpf" name="cpf" [(ngModel)]="user.cpf">
+    </div>
+
+    <div class="mb-3">
+      <label for="telefone" class="form-label">Telefone:</label>
+      <input type="text" class="form-control" id="telefone" name="telefone" [(ngModel)]="user.telefone">
+    </div>
+
+    <div class="form-check mb-3" *ngIf="isEditing">
+      <input class="form-check-input" type="checkbox" id="ativo" name="ativo" [(ngModel)]="user.ativo">
+      <label class="form-check-label" for="ativo">
+        Ativo
+      </label>
+    </div>
+
+    <div class="modal-footer d-flex justify-content-between mt-4">
+      <button type="button" class="btn btn-secondary" (click)="closeModal()">Cancelar</button>
+      <button type="submit" class="btn btn-primary" [disabled]="isLoading">
+        <span *ngIf="isLoading" class="spinner-border spinner-border-sm me-2" role="status" aria-hidden="true"></span>
+        {{ isEditing ? 'Salvar Alterações' : 'Criar Usuário' }}
+      </button>
+    </div>
+  </form>
+</div>

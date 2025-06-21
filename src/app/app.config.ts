@@ -4,6 +4,7 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http'; // I
 import { CoreModule }      from './core/core-module';
 import { authInterceptor } from './core/interceptors/auth-interceptor'; // Importe o interceptor
 import { routes } from './app.routes';
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -11,6 +12,6 @@ export const appConfig: ApplicationConfig = {
     provideZonelessChangeDetection(),
     provideRouter(routes),
     provideHttpClient(withInterceptors([authInterceptor])), // Adicione o interceptor aqui
-    importProvidersFrom(CoreModule) // Adicione o CoreModule aqui
+    importProvidersFrom(CoreModule, NgbModule) // Adicione o CoreModule aqui
   ]
 };

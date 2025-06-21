@@ -1,1 +1,66 @@
-<p>user-management works!</p>
+<!-- src/app/features/admin/components/user-management/user-management.component.html -->
+<div class="container-fluid mt-4">
+  <div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="h3 mb-0 text-dark">Gerenciamento de Usuários</h2>
+    <button class="btn btn-primary" (click)="openCreateUserModal()">
+      <i class="bi bi-person-plus me-2"></i> Adicionar Novo Usuário
+    </button>
+  </div>
+
+  <div *ngIf="isLoading" class="text-center my-4">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Carregando...</span>
+    </div>
+    <p class="text-muted mt-2">Carregando usuários...</p>
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+    {{ errorMessage }}
+  </div>
+
+  <div *ngIf="!isLoading && users.length === 0 && !errorMessage" class="alert alert-info text-center" role="alert">
+    Nenhum usuário encontrado. Clique em "Adicionar Novo Usuário" para começar.
+  </div>
+
+  <div *ngIf="!isLoading && users.length > 0" class="card shadow-sm">
+    <div class="card-body p-0">
+      <div class="table-responsive">
+        <table class="table table-hover table-striped mb-0">
+          <thead class="bg-light">
+          <tr>
+            <th scope="col">Nome</th>
+            <th scope="col">Email</th>
+            <th scope="col">Tipo</th>
+            <th scope="col">Status</th>
+            <th scope="col">CPF</th>
+            <th scope="col">Telefone</th>
+            <th scope="col">Ações</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let user of users">
+            <td>{{ user.nome }}</td>
+            <td>{{ user.email }}</td>
+            <td>{{ formatUserType(user.tipoUsuario) }}</td>
+            <td>
+                <span [ngClass]="{'badge bg-success': user.ativo, 'badge bg-danger': !user.ativo}">
+                  {{ formatActiveStatus(user.ativo) }}
+                </span>
+            </td>
+            <td>{{ user.cpf || 'N/A' }}</td>
+            <td>{{ user.telefone || 'N/A' }}</td>
+            <td>
+              <button class="btn btn-sm btn-info text-white me-2" (click)="openEditUserModal(user)">
+                <i class="bi bi-pencil"></i>
+              </button>
+              <button class="btn btn-sm btn-danger" (click)="deleteUser(user)">
+                <i class="bi bi-trash"></i>
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
