@@ -1,0 +1,38 @@
+<!-- src/app/features/admin/pages/dashboard/dashboard.component.html -->
+<div class="card shadow-sm mb-4">
+  <div class="card-body">
+    <h2 class="card-title h3 text-dark">Bem-vindo ao Painel Administrativo!</h2>
+    <p class="card-text text-secondary">Utilize a barra lateral para navegar pelas opções de gerenciamento.</p>
+    <p class="card-text text-secondary">Você está logado como: Administrador.</p>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6 mb-4">
+    <div class="card shadow-sm h-100">
+      <div class="card-body">
+        <h5 class="card-title text-dark">Gerenciamento de Usuários</h5>
+        <p class="card-text text-secondary">Crie e gerencie contas de usuários globais.</p>
+        <a routerLink="/admin/usuarios" class="btn btn-primary">Ir para Usuários</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 mb-4">
+    <div class="card shadow-sm h-100">
+      <div class="card-body">
+        <h5 class="card-title text-dark">Gerenciamento de Condomínios</h5>
+        <p class="card-text text-secondary">Cadastre novos condomínios e configure seus bancos de dados.</p>
+        <a routerLink="/admin/condominios" class="btn btn-primary">Ir para Condomínios</a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6 mb-4">
+    <div class="card shadow-sm h-100">
+      <div class="card-body">
+        <h5 class="card-title text-dark">Associações de Usuários</h5>
+        <p class="card-text text-secondary">Vincule usuários a condomínios específicos.</p>
+        <a routerLink="/admin/associacoes" class="btn btn-primary">Ir para Associações</a>
+      </div>
+    </div>
+  </div>
+</div>

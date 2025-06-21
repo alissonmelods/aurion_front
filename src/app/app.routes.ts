@@ -11,7 +11,7 @@ export const routes: Routes = [
   // Rota para o painel administrativo, protegida pelo AuthGuard
   {
     path: 'admin',
-    loadChildren: () => import('./features/admin/admin-module').then(m => m.AdminModule),
+    loadChildren: () => import('./features/admin/admin.module').then(m => m.AdminModule),
     canActivate: [authGuard] // Protege esta rota com o AuthGuard
   },
   // Redirecionamento para a página de login por padrão ou para o admin se autenticado

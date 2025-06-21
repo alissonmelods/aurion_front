@@ -1,0 +1,71 @@
+/* src/app/layouts/admin-layout/admin-layout.component.scss */
+
+#wrapper {
+  overflow-x: hidden;
+  height: 100vh; /* Garante que o wrapper ocupe a altura total da viewport */
+}
+
+#sidebar-wrapper {
+  min-height: 100vh;
+  margin-left: -15rem; /* Esconde a sidebar por padrão em mobile */
+  transition: margin .25s ease-out;
+  width: 15rem; /* Largura da sidebar */
+  flex-shrink: 0; /* Impede que a sidebar encolha */
+  display: flex; /* Para flex-column no seu conteúdo */
+  flex-direction: column; /* Para empilhar os itens da lista */
+}
+
+#page-content-wrapper {
+  min-width: 100vw;
+  /* padding-left: 0; */ /* Removido para Bootstrap 5 */
+  flex-grow: 1; /* Garante que o conteúdo ocupe o espaço restante */
+}
+
+#wrapper.toggled #sidebar-wrapper {
+  margin-left: 0; /* Mostra a sidebar */
+}
+
+/* Estilos para telas maiores (desktop) */
+@media (min-width: 992px) { /* Corresponde ao breakpoint 'lg' do Bootstrap */
+  #sidebar-wrapper {
+    margin-left: 0; /* Sidebar visível por padrão em desktop */
+  }
+  #page-content-wrapper {
+    min-width: 0;
+    width: 100%;
+  }
+  #wrapper.toggled #sidebar-wrapper {
+    margin-left: -15rem; /* Esconde a sidebar em desktop se for 'toggled' */
+  }
+}
+
+.sidebar-heading {
+  white-space: nowrap; /* Evita que o texto quebre */
+}
+
+.list-group-item-action:hover, .list-group-item-action.active {
+  background-color: #4f5357 !important; /* Cor de hover/ativo para Dark theme */
+  color: #fff !important;
+}
+
+/* Garante que o botão de sair fique no final da sidebar */
+.list-group {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+.list-group-item:last-child {
+  margin-top: auto; /* Empurra o último item para o final */
+}
+
+/* Estilo para links ativos */
+.list-group-item.active {
+  background-color: #6c757d !important; /* Exemplo de cor ativa */
+  border-color: #6c757d !important;
+  color: #fff !important;
+}
+
+/* Garante que os ícones do Bootstrap estejam disponíveis */
+/* Você precisa ter instalado "bootstrap-icons" via npm e importado no styles.scss */
+/* Ex: npm install bootstrap-icons */
+/* E em styles.scss: @import "~bootstrap-icons/font/bootstrap-icons.css"; */

@@ -1,0 +1,71 @@
+<!-- src/app/layouts/admin-layout/admin-layout.component.html -->
+<div class="d-flex" [ngClass]="{'toggled': !isSidebarOpen}" id="wrapper">
+
+  <!-- Sidebar -->
+  <div class="bg-dark text-white border-end border-dark" id="sidebar-wrapper" [ngClass]="{'d-none d-lg-block': !isSidebarOpen}">
+    <div class="sidebar-heading bg-dark border-bottom border-secondary py-3 px-4 d-flex align-items-center">
+      <h1 class="h5 fw-bold mb-0 text-white me-2">Aurion Admin</h1>
+      <!-- Botão para fechar sidebar em mobile/telas pequenas -->
+      <button class="btn btn-dark d-lg-none ms-auto" (click)="toggleSidebar()">
+        <i class="bi bi-x-lg"></i> <!-- Ícone de fechar (requer Bootstrap Icons) -->
+      </button>
+    </div>
+    <div class="list-group list-group-flush">
+      <a routerLink="/admin/dashboard" routerLinkActive="active" class="list-group-item list-group-item-action list-group-item-dark bg-dark text-white fw-medium py-3">
+        <i class="bi bi-house me-2"></i> Dashboard
+      </a>
+      <a routerLink="/admin/usuarios" routerLinkActive="active" class="list-group-item list-group-item-action list-group-item-dark bg-dark text-white fw-medium py-3">
+        <i class="bi bi-people me-2"></i> Gerenciar Usuários
+      </a>
+      <a routerLink="/admin/condominios" routerLinkActive="active" class="list-group-item list-group-item-action list-group-item-dark bg-dark text-white fw-medium py-3">
+        <i class="bi bi-building me-2"></i> Gerenciar Condomínios
+      </a>
+      <a routerLink="/admin/associacoes" routerLinkActive="active" class="list-group-item list-group-item-action list-group-item-dark bg-dark text-white fw-medium py-3">
+        <i class="bi bi-link-45deg me-2"></i> Associações
+      </a>
+      <!-- Adicione mais links de navegação conforme necessário -->
+      <button (click)="logout()" class="list-group-item list-group-item-action list-group-item-dark bg-dark text-white fw-medium py-3 border-top border-secondary mt-auto">
+        <i class="bi bi-box-arrow-right me-2"></i> Sair
+      </button>
+    </div>
+  </div>
+  <!-- /#sidebar-wrapper -->
+
+  <!-- Page Content Wrapper -->
+  <div id="page-content-wrapper" class="flex-grow-1 d-flex flex-column">
+
+    <!-- Navbar/Header -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom shadow-sm">
+      <div class="container-fluid">
+        <button class="btn btn-primary d-lg-none" (click)="toggleSidebar()">
+          <i class="bi bi-list"></i> <!-- Ícone de menu (requer Bootstrap Icons) -->
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="bi bi-person-circle me-2"></i> Administrador
+              </a>
+              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" href="#">Configurações</a>
+                <a class="dropdown-item" href="#">Perfil</a>
+                <div class="dropdown-divider"></div>
+                <button class="dropdown-item" (click)="logout()">Sair</button>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!-- /#navbar-wrapper -->
+
+    <!-- Content Area (Router Outlet) -->
+    <div class="container-fluid p-4 flex-grow-1 overflow-auto">
+      <router-outlet></router-outlet> <!-- Conteúdo das rotas filhas será injetado aqui -->
+    </div>
+    <!-- /#content-area -->
+
+  </div>
+  <!-- /#page-content-wrapper -->
+
+</div>
