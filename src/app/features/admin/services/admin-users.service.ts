@@ -39,6 +39,7 @@ export interface CreateUserRequest {
 export interface UpdateUserRequest {
   id: string;
   nome: string;
+  tipoUsuario: string;
   email: string;
   ativo: boolean;
   cpf?: string;
@@ -60,7 +61,7 @@ export class AdminUsersService {
    * @returns Um Observable com a lista de usuários.
    */
   getAllUsers(): Observable<User[]> {
-    return this.http.get<User[]>(`${this.apiUrl}/admin/usuarios/listar`);
+    return this.http.get<User[]>(`${this.apiUrl}/admin/usuarios/listar-usuarios`);
   }
 
   /**
@@ -84,7 +85,7 @@ export class AdminUsersService {
     // Vamos generalizar para /admin/usuarios/criar ou manter específico se houver separação por tipo.
     // Para simplificar, vou usar um endpoint '/admin/usuarios' e deixar o backend rotear pelo tipo.
     // Se o backend espera um endpoint específico para cada tipo, ajuste aqui.
-    return this.http.post<User>(`${this.apiUrl}/admin/usuarios/criar`, userRequest);
+    return this.http.post<User>(`${this.apiUrl}/admin/usuarios/criar-usuario`, userRequest);
   }
 
   /**
@@ -94,7 +95,7 @@ export class AdminUsersService {
    * @returns Um Observable com o usuário atualizado.
    */
   updateUser(userId: string, userRequest: UpdateUserRequest): Observable<User> {
-    return this.http.put<User>(`${this.apiUrl}/admin/usuarios/${userId}`, userRequest);
+    return this.http.put<User>(`${this.apiUrl}/admin/usuarios/editar-usuario/${userId}`, userRequest);
   }
 
   /**
@@ -103,6 +104,6 @@ export class AdminUsersService {
    * @returns Um Observable vazio após a exclusão.
    */
   deleteUser(id: string): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/admin/usuarios/${id}`);
+    return this.http.delete<void>(`${this.apiUrl}/admin/usuarios/deletar-usuario/${id}`);
   }
 }

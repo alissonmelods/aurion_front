@@ -81,6 +81,7 @@ export class UserFormComponent implements OnInit {
       const updatePayload: UpdateUserRequest = {
         id: this.user.id,
         nome: this.user.nome!,
+        tipoUsuario: this.user.tipoUsuario!,
         email: this.user.email!,
         ativo: this.user.ativo!,
         cpf: this.user.cpf,
